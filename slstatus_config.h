@@ -69,6 +69,7 @@ static const struct arg args[] = {
     { run_command, "[%2s]", "setxkbmap -print | awk -F\"+\" '/xkb_symbols/ {print $2}'" },
     { run_command, "[:%4s]", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
     { wifi_perc, "[WIFI %3s]", "wlan0" },
+    { run_command, "[BT %3s]", "if systemctl is-active --quiet bluetooth; then devices=$(bluetoothctl devices Connected | grep -c \"^Device \"); if [ \"$devices\" -gt 0 ]; then echo \"$devices\"; else echo \"ON\"; fi; else echo \"OFF\"; fi" },
     { run_command, "[VPN %3s]", "/opt/dwm/vpn_status" },
     { battery_perc, "[BAT %3s]", "BAT0" },
     { cpu_perc, "[CPU %3s]", NULL    },    
